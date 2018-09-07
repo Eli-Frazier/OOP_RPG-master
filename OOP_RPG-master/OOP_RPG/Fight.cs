@@ -178,6 +178,7 @@ namespace OOP_RPG
         }
         
         public void Lose() {
+            Console.WriteLine("");
             Console.WriteLine("You've been defeated! :( GAME OVER.");
             Console.WriteLine($"What would you like to do?");
             Console.WriteLine($"1. Start a new game");
@@ -187,6 +188,7 @@ namespace OOP_RPG
             switch (input)
             {
                 case "1":
+                    var game = new Game();
                     game.Start();
                     break;
                 case "2":

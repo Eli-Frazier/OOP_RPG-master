@@ -83,8 +83,23 @@ namespace OOP_RPG
 
             Console.WriteLine("");
             Console.WriteLine("**Equipped**");
-            Console.WriteLine($"Armor: {EquippedArmor}");
-            Console.WriteLine($"Weapon: {EquippedWeapon}");
+            if(EquippedArmor != null)
+            {
+                Console.WriteLine($"Armor: {EquippedArmor.Name}");
+            }
+            else
+            {
+                Console.WriteLine($"Armor:");
+            }
+
+            if(EquippedWeapon != null)
+            {
+                Console.WriteLine($"Weapon: {EquippedWeapon.Name}");
+            }
+            else
+            {
+                Console.WriteLine($"Weapon:");
+            }
 
             Console.WriteLine("");
             Console.WriteLine("Gold: " + Gold);
@@ -128,6 +143,13 @@ namespace OOP_RPG
         #region Equip and Unequip armor and weapons
         public void EquipWeapon()
         {
+            if(EquippedWeapon != null)
+            {
+                Console.WriteLine("You're already weilding a weapon");
+                Console.ReadKey();
+                ShowInventory();
+            }
+
             UserItemCatalog.Clear();
             Console.WriteLine("");
             Console.WriteLine("*****Weapons*****");
@@ -142,7 +164,7 @@ namespace OOP_RPG
             
             if(UserItemCatalog.Count == 0)
             {
-                Console.WriteLine("You have no weapons to equip");
+                Console.WriteLine("You have no weapons to equip (press any button to continue)");
                 Console.ReadKey();
                 ShowInventory();
             }
@@ -176,6 +198,13 @@ namespace OOP_RPG
 
         public void EquipArmor()
         {
+            if (EquippedArmor != null)
+            {
+                Console.WriteLine("You're already wearing armor (press any button to continue)");
+                Console.ReadKey();
+                ShowInventory();
+            }
+
             UserItemCatalog.Clear();
             Console.WriteLine("");
             Console.WriteLine("*****Armor*****");
