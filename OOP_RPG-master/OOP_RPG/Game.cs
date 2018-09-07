@@ -16,7 +16,7 @@ namespace OOP_RPG
 
         public void Start() {
             Console.WriteLine("Welcome hero!");
-            Console.WriteLine("Please enter your name:");
+            Console.Write("Please enter your name: ");
             this.Hero.Name = Console.ReadLine();
 
             //Console.WriteLine("Hello " + hero.Name);

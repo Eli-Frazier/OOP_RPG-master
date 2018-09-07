@@ -19,13 +19,13 @@ namespace OOP_RPG
             this.hero = hero;
             this.game = game;
 
-            this.AddMonster("Squid", 9, 8, 16, 10);
-            this.AddMonster("Skeleton", 3, 1, 20, 30);
-            this.AddMonster("Ghost", 5, 2, 15, 10);
-            this.AddMonster("Wolf", 10, 5, 25, 15);
+            this.AddMonster("Squid", 9, 5, 16, 10, 2);
+            this.AddMonster("Skeleton", 15, 1, 15, 30, 5);
+            this.AddMonster("Ghost", 11, 2, 15, 10, 3);
+            this.AddMonster("Wolf", 16, 8, 20, 15, 10);
         }
         
-        public void AddMonster(string name, int strength, int defense, int hp, int gold) {
+        public void AddMonster(string name, int strength, int defense, int hp, int gold, int speed) {
             var monster = new Monster();
             monster.Name = name;
             monster.Strength = strength;
@@ -33,6 +33,7 @@ namespace OOP_RPG
             monster.OriginalHP = hp;
             monster.CurrentHP = hp;
             monster.Gold = gold;
+            monster.Speed = speed;
             this.Monsters.Add(monster);
         }
         
@@ -61,7 +62,7 @@ namespace OOP_RPG
             Console.WriteLine("You've encountered a " + enemy.Name + "! " + enemy.Strength + " Strength/" + enemy.Defense + " Defense/" + 
             enemy.CurrentHP + " HP. What will you do?");
             Console.WriteLine("1. Fight");
-            Console.WriteLine("2. Flee");
+            Console.WriteLine("2. Nevermind");
             
             var input = Console.ReadLine();
             switch (input)
@@ -100,7 +101,7 @@ namespace OOP_RPG
                     HeroTurn(enemy);
                     break;
                 case "2":
-                    game.Main();
+                    Flee(monster);
                     break;
                 case "3":
                     DrinkPotion(monster);
@@ -178,7 +179,24 @@ namespace OOP_RPG
         
         public void Lose() {
             Console.WriteLine("You've been defeated! :( GAME OVER.");
-            return;
+            Console.WriteLine($"What would you like to do?");
+            Console.WriteLine($"1. Start a new game");
+            Console.WriteLine($"2. Exit");
+            var input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "1":
+                    game.Start();
+                    break;
+                case "2":
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Environment.Exit(0);
+                    break;
+
+            }
         }
 
         public void DrinkPotion(Monster monster)
@@ -217,6 +235,22 @@ namespace OOP_RPG
                 game.Hero.PotionsBag.Remove(potion);
                 game.Hero.CurrentHP += potion.HP;
                 this.WhatNow(monster);
+            }
+        }
+
+        public void Flee(Monster monster)
+        {
+            if(game.Hero.Speed >= monster.Speed)
+            {
+                Console.WriteLine($"You were able to escape the {monster.Name}! (press any button to continue)");
+                Console.ReadKey();
+                game.Main();
+            }
+            else
+            {
+                Console.WriteLine($"You were NOT able to escape the {monster.Name}! It caught you and killed you! (press any button to continue)");
+                Console.ReadKey();
+                Lose();
             }
         }
     }

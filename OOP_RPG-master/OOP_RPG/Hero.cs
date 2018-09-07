@@ -15,6 +15,7 @@ namespace OOP_RPG
         public Weapon EquippedWeapon { get; set; }
         public Armor EquippedArmor { get; set; }
         public int Gold { get; set; }
+        public int Speed { get; set; }
 
         public Dictionary<string, object> UserItemCatalog { get; set; }
 
@@ -41,7 +42,8 @@ namespace OOP_RPG
             this.Defense = 10;
             this.OriginalHP = 30;
             this.CurrentHP = 30;
-            Gold = 1000;
+            Speed = 9;
+            Gold = 0;
             UserItemCatalog = new Dictionary<string, object>();
             Shop = shop;
         }
@@ -59,24 +61,32 @@ namespace OOP_RPG
         {
             Console.Clear();
             Console.WriteLine("*****  INVENTORY ******");
-            Console.WriteLine("Weapons: ");
+            Console.WriteLine("**Weapons**");
             foreach (var w in this.WeaponsBag)
             {
                 Console.WriteLine(w.Name + " of " + w.Strength + " Strength");
             }
 
-            Console.WriteLine("Armor: ");
+            Console.WriteLine("");
+            Console.WriteLine("**Armor**");
             foreach (var a in this.ArmorsBag)
             {
                 Console.WriteLine(a.Name + " of " + a.Defense + " Defense");
             }
 
-            Console.WriteLine("Potions: ");
+            Console.WriteLine("");
+            Console.WriteLine("**Potions**");
             foreach (var a in this.PotionsBag)
             {
                 Console.WriteLine($"{a.Name} that will grant {a.HP} Hitpoints");
             }
 
+            Console.WriteLine("");
+            Console.WriteLine("**Equipped**");
+            Console.WriteLine($"Armor: {EquippedArmor}");
+            Console.WriteLine($"Weapon: {EquippedWeapon}");
+
+            Console.WriteLine("");
             Console.WriteLine("Gold: " + Gold);
 
             Console.WriteLine("");

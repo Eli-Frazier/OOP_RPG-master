@@ -59,9 +59,9 @@ namespace OOP_RPG
         public void Menu()
         {
             Console.Clear();
-            Console.WriteLine("Welcome to the Shop O' Shit! Would you like to look at my shit or sell your own shit?");
-            Console.WriteLine("1. Browse the shit");
-            Console.WriteLine("2. Sell your shit");
+            Console.WriteLine("Welcome to 'The Shop'! What would you like to do?");
+            Console.WriteLine("1. Browse whats for sale");
+            Console.WriteLine("2. Sell your things");
             Console.WriteLine("3. Return to main menu");
 
             Console.Write("Enter your selection: ");
@@ -89,7 +89,7 @@ namespace OOP_RPG
             ItemCatalog.Clear();
 
             Console.Clear();
-            Console.WriteLine("Here's all the shit I have for sale.");
+            Console.WriteLine("Here's all the stuff I have for sale.");
             ShowArmor();
             ShowWeapons();
             ShowPotions();
