@@ -23,6 +23,11 @@ namespace OOP_RPG
             this.AddMonster("Skeleton", 15, 1, 15, 30, 5);
             this.AddMonster("Ghost", 11, 2, 15, 10, 3);
             this.AddMonster("Wolf", 16, 8, 20, 15, 10);
+            this.AddMonster("Goblin", 10, 10, 25, 20, 8);
+            this.AddMonster("Zombie", 20, 3, 20, 5, 5);
+            this.AddMonster("Dragon", 30, 30, 40, 100, 25);
+            this.AddMonster("Thief", 20, 20, 15, 20, 9);
+            this.AddMonster("Assassin", 20, 5, 20, 30, 11);
         }
         
         public void AddMonster(string name, int strength, int defense, int hp, int gold, int speed) {
@@ -59,8 +64,7 @@ namespace OOP_RPG
             var random = new Random();
             var enemy = this.Monsters[random.Next(0, this.Monsters.Count)];
 
-            Console.WriteLine("You've encountered a " + enemy.Name + "! " + enemy.Strength + " Strength/" + enemy.Defense + " Defense/" + 
-            enemy.CurrentHP + " HP. What will you do?");
+            Console.WriteLine($"You've encountered a {enemy.Name}! {enemy.Strength} Strength/ {enemy.Defense} Defense/ {enemy.CurrentHP} HP/ {enemy.Speed} Speed. What will you do?");
             Console.WriteLine("1. Fight");
             Console.WriteLine("2. Nevermind");
             
@@ -242,6 +246,7 @@ namespace OOP_RPG
 
         public void Flee(Monster monster)
         {
+
             if(game.Hero.Speed >= monster.Speed)
             {
                 Console.WriteLine($"You were able to escape the {monster.Name}! (press any button to continue)");

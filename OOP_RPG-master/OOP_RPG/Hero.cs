@@ -55,6 +55,7 @@ namespace OOP_RPG
             Console.WriteLine("Strength: " + this.Strength);
             Console.WriteLine("Defense: " + this.Defense);
             Console.WriteLine("Hitpoints: " + this.CurrentHP + "/" + this.OriginalHP);
+            Console.WriteLine($"Speed: {Speed}");
         }
 
         public void ShowInventory()
